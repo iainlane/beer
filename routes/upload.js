@@ -54,7 +54,8 @@ function autoRotate(req, res, next) {
 
     jpegrotate.rotate(req.file.buffer, { 'quality': 85 }, (err, buffer, orientation, dimensions) => {
         if (err) {
-            if (err.code === jpegrotate.errors.correct_orientation)
+            if (err.code === jpegrotate.errors.correct_orientation ||
+                err.code === jpegrotate.errors.no_orientation)
                 return next();
 
             err.status = 401;
