@@ -72,7 +72,7 @@ function writeFile(req, res, next) {
     hash.update(req.file.buffer);
     const digest = hash.digest('hex');
     req.file.filename = digest;
-    fs.writeFile(path.join('uploads', req.file.filename), req.file.buffer, (err) => {
+    fs.writeFile(path.join(config.imagedir, req.file.filename), req.file.buffer, (err) => {
         delete req.file.buffer;
 
         if (err) {

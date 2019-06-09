@@ -1,5 +1,7 @@
 var path = require('path');
 
+var config = require(path.join(global.__basedir, 'config.json'));
+
 var express = require('express');
 var fs = require('fs');
 var mmmagic = require('mmmagic'), Magic = mmmagic.Magic;
@@ -18,7 +20,7 @@ router.get('/current', async (req, res, next) => {
 });
 
 async function setContentType(req, res, next) {
-    var uploadpath = path.join('uploads', req.path);
+    var uploadpath = path.join(config.imagedir, req.path);
 
     fs.access(uploadpath, fs.constants.F_OK, (err) => {
         if (err) {
