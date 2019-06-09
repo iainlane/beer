@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div
+        img.center(src="images/current" alt="Can't get enough of that wonderful stuff.")
+    p.topright
+        if profile
+            if can_upload
+                a(href="/upload") &#x1F4BE;
+            else
+                | #{profile.emails.join(", ")}
+            |
+            |
+            a(href="/auth/logout") &#x1F44B;
+        else
+            a(href="/auth/google") &#x1F511;
+    p.bottomright
+        a(href="mailto:laney@is.downthe.pub") laney@is.downthe.pub
+        | . All content &copy; Iain Lane. 
+        a(rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/") CC-BY-SA-4.0
+        | .
