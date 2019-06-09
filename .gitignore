@@ -81,3 +81,6 @@ typings/
 
 # contains secrets
 config.json
+
+# var
+uploads/
