@@ -12,7 +12,7 @@ router.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: config.keys.GOOGLE_CLIENT_ID,
     clientSecret: config.keys.GOOGLE_CONSUMER_SECRET,
-    callbackURL: "https://lets.go.downthe.pub/auth/google/callback"
+    callbackURL: config.callbackurl,
 }, (accessToken, refreshToken, profile, cb) => {
     cb (null, profile);
 }));
