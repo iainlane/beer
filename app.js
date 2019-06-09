@@ -5,6 +5,7 @@ var minify = require('express-minify');
 var createError = require('http-errors');
 var express = require('express');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -34,7 +35,8 @@ app.use(helmet());
 app.use(session({
     secret: config.sessionsecret,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new RedisStore()
 }));
 
 app.use(compression());
