@@ -2,7 +2,7 @@
 Description=Beer
 
 [Service]
-ExecStart=/usr/local/lib/node_modules/beer/app.js
+ExecStart=/usr/local/lib/node_modules/beer/bin/www
 Restart=always
 User=nobody
 Group=nogroup
