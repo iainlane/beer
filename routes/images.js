@@ -39,6 +39,6 @@ async function setContentType(req, res, next) {
     });
 }
 
-router.use('/', setContentType, express.static('uploads'));
+router.use('/', setContentType, express.static(config.imagedir));
 
 module.exports = router;
