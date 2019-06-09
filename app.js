@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 var compression = require('compression');
 var minify = require('express-minify');
 var createError = require('http-errors');
