@@ -13,6 +13,7 @@ passport.use(new GoogleStrategy({
     clientID: config.keys.GOOGLE_CLIENT_ID,
     clientSecret: config.keys.GOOGLE_CONSUMER_SECRET,
     callbackURL: config.callbackurl,
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
 }, (accessToken, refreshToken, profile, cb) => {
     cb (null, profile);
 }));
