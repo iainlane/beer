@@ -5,6 +5,7 @@ var config = require(path.join(global.__basedir, 'config.json'));
 var express = require('express');
 var fs = require('fs');
 var mmmagic = require('mmmagic'), Magic = mmmagic.Magic;
+var piexif = require('piexifjs');
 var redis = require(path.join(global.__basedir, 'models', 'redis'));
 
 var router = express.Router();
@@ -39,6 +40,24 @@ async function setContentType(req, res, next) {
     });
 }
 
-router.use('/', setContentType, express.static(config.imagedir));
+async function stripExifAndServe(req, res, next) {
+    var uploadpath = path.join(config.imagedir, req.path);
+
+    fs.readFile(uploadpath, 'binary', (err, data) => {
+        if (err) {
+            err.status = 404;
+            return next(err);
+        }
+
+        if (res.get('Content-Type').indexOf('image/jpeg') !== -1) {
+            const newdata = piexif.remove(data);
+            res.end(Buffer.from(newdata, 'binary'));
+        } else {
+            res.end(Buffer.from(data));
+        }
+    });
+}
+
+router.use('/', setContentType, stripExifAndServe);
 
 module.exports = router;
