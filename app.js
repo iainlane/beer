@@ -18,7 +18,6 @@ var authRouter = require('./routes/auth');
 var imagesRouter = require('./routes/images');
 var indexRouter = require('./routes/index');
 var uploadRouter = require('./routes/upload');
-var jsonRouter = require('./routes/json');
 
 var app = express();
 
