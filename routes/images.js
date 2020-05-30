@@ -51,9 +51,9 @@ async function stripExifAndServe(req, res, next) {
 
         if (res.get('Content-Type').indexOf('image/jpeg') !== -1) {
             const newdata = piexif.remove(data);
-            res.end(Buffer.from(newdata, 'binary'));
+            res.send(Buffer.from(newdata, 'binary'));
         } else {
-            res.end(Buffer.from(data));
+            res.send(Buffer.from(data));
         }
     });
 }
